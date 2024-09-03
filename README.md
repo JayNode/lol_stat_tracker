@@ -7,6 +7,9 @@ Run LTR -> npm start
   - Node.js
   - npm
 
+  CSS
+  - bootstrap
+
   Web scraper
   - beautifulsoup4
 
