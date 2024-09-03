@@ -6,6 +6,7 @@ Run LTR -> npm start
   React
   - Node.js
   - npm
+
   Web scraper
   - beautifulsoup4
   Data Base
