@@ -9,4 +9,6 @@ Run LTR -> npm start
 
   Web scraper
   - beautifulsoup4
+
   Data Base
+  - ?
