@@ -14,4 +14,4 @@ Run LTR -> npm start
   - beautifulsoup4
 
   Data Base
-  - ?
+  - SQLite
