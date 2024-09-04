@@ -11,7 +11,8 @@ Run LTR -> npm start
   - bootstrap
 
   Web scraper
-  - beautifulsoup4
+  - Cherrio
+  - Axios
 
   Data Base
   - SQLite
