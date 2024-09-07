@@ -1,7 +1,8 @@
+/* App.css */
 .App {
-    background-color: red;
-}
-
-#hw {
-    color: blue;
+    background-color: #1a1a2e;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
