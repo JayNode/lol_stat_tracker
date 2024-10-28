@@ -7,12 +7,12 @@ Run LTR -> npm start
   - Node.js
   - npm
 
-  CSS
-  - bootstrap
+  Install in -> cd LST
+  - npm i -D react-router-dom
 
   Web scraper
-  - Cherrio
-  - Axios
+  - npm install Cherrio
+  - npm install Axios
 
   Data Base
   - SQLite
