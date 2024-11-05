@@ -1,5 +1,7 @@
 import React from "react";
 import "./home.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const champions = [
   { name: "Aatrox", winRate: "49.8%" },
