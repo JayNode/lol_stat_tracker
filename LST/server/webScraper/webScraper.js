@@ -7,20 +7,18 @@ async function scrapeData() {
   await page.goto('https://u.gg/lol/tier-list');
 
   const data = await page.evaluate(() => {
-    const elements = document.querySelectorAll('.champion-name');
     const winRates = document.querySelectorAll('.winrate');
     
-    const result = {};
-    elements.forEach((element, index) => {
-      const championName = element.textContent;
-      const championWinRate =  winRates[index+1].textContent;
-      result[championName] = championWinRate;
+    const result = [];
+    winRates.forEach((winRateElement, index) => {
+      if (index > 0) { // Skip the first item if it's a header
+        result.push(winRateElement.textContent);
+      }
     });
-  
+    
     return result;
   });
   
-
   console.log(data);
 
   await browser.close();
