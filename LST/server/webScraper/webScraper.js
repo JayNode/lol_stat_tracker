@@ -4,7 +4,7 @@ async function scrapeData() {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
-  await page.goto("https://u.gg/lol/tier-list", { timeout: 60000 });
+  await page.goto("https://u.gg/lol/tier-list", { timeout: 0 });
 
   await autoScroll(page);
   await page.waitForNetworkIdle();
@@ -15,7 +15,6 @@ async function scrapeData() {
     const result = [];
     winRates.forEach((winRateElement, index) => {
       if (index > 0) {
-        // Skip the first item if it's a header
         result.push(winRateElement.textContent);
       }
     });
@@ -34,8 +33,20 @@ async function scrapeData() {
     return result;
   });
 
+  const roleData = await page.evaluate(() => {
+    const roles = document.querySelectorAll(".role > div > img");
+
+    const result = [];
+    roles.forEach((roleElement, index) => {
+      result.push(roleElement.getAttribute("alt"));
+    });
+
+    return result;
+  });
+
   console.log(winData);
   console.log(charData);
+  console.log(roleData);
 
   await browser.close();
 }
