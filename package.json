@@ -1,0 +1,22 @@
+{
+  "name": "lol_stat_tracker",
+  "version": "1.0.0",
+  "description": "Run LTR -> npm start",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "cheerio": "^1.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "react-router-dom": "^6.27.0"
+  }
+}
