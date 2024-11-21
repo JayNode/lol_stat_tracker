@@ -4,7 +4,7 @@ async function scrapeData() {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
-  await page.goto("https://u.gg/lol/tier-list", { timeout: 0 });
+  await page.goto("https://u.gg/lol/tier-list", { timeout: 60000 });
 
   await autoScroll(page);
   await page.waitForNetworkIdle();
