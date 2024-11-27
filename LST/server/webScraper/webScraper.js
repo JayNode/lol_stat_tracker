@@ -44,9 +44,63 @@ async function scrapeData() {
     return result;
   });
 
+  const tierData = await page.evaluate(() => {
+    const tiers = document.querySelectorAll(".tier > span > b");
+
+    const result = [];
+    tiers.forEach((tierElement, index) => {
+      result.push(tierElement.textContent);
+    });
+
+    return result;
+  });
+
+  const pickData = await page.evaluate(() => {
+    const picks = document.querySelectorAll(".pickrate");
+
+    const result = [];
+    picks.forEach((pickElement, index) => {
+      if (index > 0) {
+        result.push(pickElement.textContent);
+      }
+    });
+
+    return result;
+  });
+
+  const banData = await page.evaluate(() => {
+    const banDataRates = document.querySelectorAll(".banrate");
+
+    const result = [];
+    banDataRates.forEach((banRateElement, index) => {
+      if (index > 0) {
+        result.push(banRateElement.textContent);
+      }
+    });
+
+    return result;
+  });
+
+  const matchesData = await page.evaluate(() => {
+    const matchesData = document.querySelectorAll(".matches");
+
+    const result = [];
+    matchesData.forEach((matchesDataElement, index) => {
+      if (index > 0) {
+        result.push(matchesDataElement.textContent);
+      }
+    });
+
+    return result;
+  });
+
   console.log(winData);
   console.log(charData);
   console.log(roleData);
+  console.log(tierData);
+  console.log(pickData);
+  console.log(banData);
+  console.log(matchesData);
 
   await browser.close();
 }
