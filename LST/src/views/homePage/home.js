@@ -1,22 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import "./home.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import {
-  winData, 
-  charData, 
-  roleData, 
-  tierData, 
-  pickData, 
-  banData, 
-  matchesData
-} from "../../../webScraper/webScraper";
+
 const champions = [
   { name: "Aatrox", winRate: "49.8%" },
 ];
 
 
 function Home() {
+
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch('./webScraper.js') // The proxy will forward this to http://localhost:5000/api/data
+      .then(res => res.json())
+      .then(data => setData(data));
+  }, []);
+
   return (
     <div className="Home">
       <h1>Champion Win Rates</h1>
