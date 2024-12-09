@@ -1,4 +1,5 @@
 const puppeteer = require("puppeteer");
+const axios = require("axios");
 
 async function scrapeData() {
   const browser = await puppeteer.launch();
@@ -11,96 +12,68 @@ async function scrapeData() {
 
   const winData = await page.evaluate(() => {
     const winRates = document.querySelectorAll(".winrate");
-
-    const result = [];
-    winRates.forEach((winRateElement, index) => {
-      if (index > 0) {
-        result.push(winRateElement.textContent);
-      }
-    });
-
-    return result;
+    return Array.from(winRates)
+      .slice(1)
+      .map((el) => el.textContent); // Skip header
   });
 
   const charData = await page.evaluate(() => {
     const champions = document.querySelectorAll(".champion-name");
-
-    const result = [];
-    champions.forEach((champElement, index) => {
-      result.push(champElement.textContent);
-    });
-
-    return result;
+    return Array.from(champions).map((el) => el.textContent);
   });
 
   const roleData = await page.evaluate(() => {
     const roles = document.querySelectorAll(".role > div > img");
-
-    const result = [];
-    roles.forEach((roleElement, index) => {
-      result.push(roleElement.getAttribute("alt"));
-    });
-
-    return result;
+    return Array.from(roles).map((el) => el.getAttribute("alt"));
   });
 
   const tierData = await page.evaluate(() => {
     const tiers = document.querySelectorAll(".tier > span > b");
-
-    const result = [];
-    tiers.forEach((tierElement, index) => {
-      result.push(tierElement.textContent);
-    });
-
-    return result;
+    return Array.from(tiers).map((el) => el.textContent);
   });
 
   const pickData = await page.evaluate(() => {
     const picks = document.querySelectorAll(".pickrate");
-
-    const result = [];
-    picks.forEach((pickElement, index) => {
-      if (index > 0) {
-        result.push(pickElement.textContent);
-      }
-    });
-
-    return result;
+    return Array.from(picks)
+      .slice(1)
+      .map((el) => el.textContent); // Skip header
   });
 
   const banData = await page.evaluate(() => {
-    const banDataRates = document.querySelectorAll(".banrate");
-
-    const result = [];
-    banDataRates.forEach((banRateElement, index) => {
-      if (index > 0) {
-        result.push(banRateElement.textContent);
-      }
-    });
-
-    return result;
+    const banRates = document.querySelectorAll(".banrate");
+    return Array.from(banRates)
+      .slice(1)
+      .map((el) => el.textContent); // Skip header
   });
 
   const matchesData = await page.evaluate(() => {
-    const matchesData = document.querySelectorAll(".matches");
-
-    const result = [];
-    matchesData.forEach((matchesDataElement, index) => {
-      if (index > 0) {
-        result.push(matchesDataElement.textContent);
-      }
-    });
-
-    return result;
+    const matches = document.querySelectorAll(".matches");
+    return Array.from(matches)
+      .slice(1)
+      .map((el) => el.textContent); // Skip header
   });
 
-  console.log(winData);
-  console.log(charData);
-  console.log(roleData);
-  console.log(tierData);
-  console.log(pickData);
-  console.log(banData);
-  console.log(matchesData);
+  const championsData = charData.map((name, index) => ({
+    name,
+    winRate: winData[index] || "N/A",
+    role: roleData[index] || "N/A",
+    tier: tierData[index] || "N/A",
+    pickRate: pickData[index] || "N/A",
+    banRate: banData[index] || "N/A",
+    matches: matchesData[index] || "N/A",
+  }));
+
+  console.log(championsData);
+
+  // Send data to the backend
+  try {
+    await axios.post("http://localhost:3001/api/champions", {
+      champions: championsData,
+    });
+    console.log("Data sent to backend successfully!");
+  } catch (error) {
+    console.error("Error sending data to backend:", error);
+  }
 
   await browser.close();
 }
