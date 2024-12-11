@@ -1,6 +1,8 @@
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./home.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Home = () => {
   const [champions, setChampions] = useState([]);
@@ -20,12 +22,13 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="Home">
-      <h1>Champion Win Rates</h1>
-      <div className="table-container">
-        <table>
-          <thead>
+    <div className="Home container-fluid text-center">
+      <h1>League Of Legends Champion Stats</h1>
+      <div className="table-container table-responsive">
+        <table className="table table-bordered">
+          <thead className="thead-light">
             <tr>
+              <th>Rank</th>
               <th>Champion</th>
               <th>Win Rate</th>
               <th>Role</th>
@@ -38,6 +41,7 @@ const Home = () => {
           <tbody>
             {champions.map((champion, index) => (
               <tr key={index}>
+                <td>{index + 1}</td>
                 <td>{champion.name}</td>
                 <td>{champion.winRate}</td>
                 <td>{champion.role}</td>
