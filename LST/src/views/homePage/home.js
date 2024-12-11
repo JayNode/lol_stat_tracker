@@ -23,7 +23,7 @@ const Home = () => {
 
   return (
     <div className="Home container-fluid text-center">
-      <h1>Champion Win Rates</h1>
+      <h1>League Of Legends Champion Stats</h1>
       <div className="table-container table-responsive">
         <table className="table table-bordered">
           <thead className="thead-light">
