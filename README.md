@@ -11,7 +11,7 @@ React
 - Node.js
 - npm
 
-  Installations
+Installations
 
 - npm i -D react-router-dom
 - npm install puppeteer
