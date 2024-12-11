@@ -8,12 +8,6 @@ const PORT = 3001;
 app.use(cors());
 app.use(express.json());
 
-// // Mock data
-// const champions = [
-//   { name: "Aatrox", winRate: "49.8%" },
-//   { name: "Ahri", winRate: "52.1%" },
-// ];
-
 let champions = [];
 
 // API endpoint to serve champions

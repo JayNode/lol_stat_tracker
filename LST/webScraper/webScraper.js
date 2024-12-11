@@ -5,7 +5,7 @@ async function scrapeData() {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
-  await page.goto("https://u.gg/lol/tier-list", { timeout: 60000 });
+  await page.goto("https://u.gg/lol/tier-list");
 
   await autoScroll(page);
   await page.waitForNetworkIdle();
@@ -98,7 +98,7 @@ async function autoScroll(page, maxScrolls) {
           clearInterval(timer);
           resolve();
         }
-      }, 100);
+      });
     });
   }, maxScrolls); // pass maxScrolls to the function
 }
