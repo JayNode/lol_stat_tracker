@@ -1,5 +1,14 @@
+#STEP 1# Install npm and node.js before running this script
 npm 
 node.js
-beautifulsoup4
 
-bootstrap
+#STEP 2# Go into the LST directory first -> cd LST
+
+#STEP 3# Installations
+# React router installations
+npm i -D react-router-dom
+# Web Scraper installations
+npm install axios
+npm install cheerio
+
+#STEP 4# Run the script using -> npm start
