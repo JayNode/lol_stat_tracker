@@ -1,6 +1,8 @@
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./home.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Home = () => {
   const [champions, setChampions] = useState([]);
@@ -20,11 +22,11 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="Home">
+    <div className="Home container-fluid text-center">
       <h1>Champion Win Rates</h1>
-      <div className="table-container">
-        <table>
-          <thead>
+      <div className="table-container table-responsive">
+        <table className="table table-bordered">
+          <thead className="thead-light">
             <tr>
               <th>Champion</th>
               <th>Win Rate</th>
