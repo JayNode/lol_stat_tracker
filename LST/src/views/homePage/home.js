@@ -28,6 +28,7 @@ const Home = () => {
         <table className="table table-bordered">
           <thead className="thead-light">
             <tr>
+              <th>Rank</th>
               <th>Champion</th>
               <th>Win Rate</th>
               <th>Role</th>
@@ -40,6 +41,7 @@ const Home = () => {
           <tbody>
             {champions.map((champion, index) => (
               <tr key={index}>
+                <td>{index + 1}</td>
                 <td>{champion.name}</td>
                 <td>{champion.winRate}</td>
                 <td>{champion.role}</td>
