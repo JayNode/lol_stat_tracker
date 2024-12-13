@@ -14,7 +14,6 @@ let champions = [];
 app.get("/api/champions", (req, res) => {
   res.json(champions);
 });
-
 // API endpoint to receive champions data
 app.post("/api/champions", (req, res) => {
   const { champions: receivedChampions } = req.body;
